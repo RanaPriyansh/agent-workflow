@@ -1,5 +1,9 @@
 # Thielon Agent Workflow
 
+[![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github)](https://github.com/thielon-apps/thielon-agent-workflow)
+[![License](https://img.shields.io/github/license/thielon-apps/thielon-agent-workflow)](https://github.com/thielon-apps/thielon-agent-workflow/blob/main/LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/thielon-apps/thielon-agent-workflow)](https://github.com/thielon-apps/thielon-agent-workflow/commits/main)
+
 Orchestrate multiple AI agents in complex workflows. Define DAGs, queues, state machines, and human-in-the-loop approvals.
 
 ## Features
