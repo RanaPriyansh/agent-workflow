@@ -1,8 +1,8 @@
-# Thielon Agent Workflow
+# Agent Workflow
 
-[![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github)](https://github.com/thielon-apps/thielon-agent-workflow)
-[![License](https://img.shields.io/github/license/thielon-apps/thielon-agent-workflow)](https://github.com/thielon-apps/thielon-agent-workflow/blob/main/LICENSE)
-[![Last commit](https://img.shields.io/github/last-commit/thielon-apps/thielon-agent-workflow)](https://github.com/thielon-apps/thielon-agent-workflow/commits/main)
+[![GitHub](https://img.shields.io/badge/GitHub-000000?logo=github)](https://github.com/RanaPriyansh/agent-workflow)
+[![License](https://img.shields.io/github/license/RanaPriyansh/agent-workflow)](https://github.com/RanaPriyansh/agent-workflow/blob/main/LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/RanaPriyansh/agent-workflow)](https://github.com/RanaPriyansh/agent-workflow/commits/main)
 
 Orchestrate multiple AI agents in complex workflows. Define DAGs, queues, state machines, and human-in-the-loop approvals.
 
@@ -18,7 +18,7 @@ Orchestrate multiple AI agents in complex workflows. Define DAGs, queues, state 
 ## Quick Start
 
 ```python
-from thielon_workflow import Workflow, AgentTask
+from agent_workflow import Workflow, AgentTask
 
 # Define workflow
 wf = Workflow(name="content-generation")
@@ -40,7 +40,7 @@ wf.run()
 ## Install
 
 ```bash
-pip install thielon-agent-workflow
+pip install agent-workflow
 ```
 
 ## Why
@@ -59,3 +59,7 @@ This workflow engine provides:
 ## License
 
 MIT
+
+---
+
+Built with ❤️ by Thielon

@@ -3,6 +3,7 @@ class AgentTask:
         self.agent_id = agent_id
         self.depends_on = depends_on or []
         self.human_approval = human_approval
+
 class Workflow:
     def __init__(self, name):
         self.name = name
