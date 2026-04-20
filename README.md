@@ -4,57 +4,113 @@
 [![License](https://img.shields.io/github/license/RanaPriyansh/agent-workflow)](https://github.com/RanaPriyansh/agent-workflow/blob/main/LICENSE)
 [![Last commit](https://img.shields.io/github/last-commit/RanaPriyansh/agent-workflow)](https://github.com/RanaPriyansh/agent-workflow/commits/main)
 
-Orchestrate multiple AI agents in complex workflows. Define DAGs, queues, state machines, and human-in-the-loop approvals.
+Meta harness for building, maintaining, and scaling project portfolios.
 
-## Features
+This is not just a DAG toy anymore. It is a lightweight operating harness that can continuously run phase-specific commands across multiple projects, persist state, and keep the project empire warm.
 
-- **DAG Workflows**: Define agent execution order with dependencies
-- **State Management**: Persistent workflow state (Redis/DB)
-- **Queue System**: Async task queue for agent coordination
-- **Human-in-the-Loop**: Pause for approval, inject human input
-- **Retry & Error Handling**: Automatic retries, dead letter queues
-- **Observability**: Track workflow execution, visualize DAGs
+## What it does
 
-## Quick Start
+- Runs project phases like `build`, `maintain`, and `scale`
+- Persists last-run state in JSON
+- Executes shell commands inside each project repo
+- Skips phases that are not due yet
+- Can run once or continuously as a daemon
 
-```python
-from agent_workflow import Workflow, AgentTask
+## Core idea
 
-# Define workflow
-wf = Workflow(name="content-generation")
+A project portfolio usually dies from entropy, not lack of ideas.
 
-# Define tasks
-research = AgentTask("research-agent", input="topic")
-write = AgentTask("writer-agent", depends_on=[research])
-review = AgentTask("reviewer-agent", depends_on=[write], human_approval=True)
+The meta harness solves that by giving each project a recurring operating loop:
 
-# Add tasks
-wf.add_task(research)
-wf.add_task(write)
-wf.add_task(review)
+- `build` → prove something still works
+- `maintain` → inspect health / drift / dirty state
+- `scale` → run compounding actions like collection, research, exports, or growth machinery
 
-# Execute
-wf.run()
-```
-
-## Install
+## Quick start
 
 ```bash
-pip install agent-workflow
+cd /root/git-repos/agent-workflow
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+python3 agent_workflow.py run-once --config meta.example.json --state data/meta_state.json
+python3 agent_workflow.py daemon --config meta.example.json --state data/meta_state.json --interval 300
 ```
 
-## Why
+## Config format
 
-Single agents are limited. Complex tasks need multiple agents:
-- Researcher → Writer → Editor → Publisher
-- Data collector → Analyzer → Visualizer → Reporter
-- Planner → Executor → Reviewer
+Use a JSON file like `meta.example.json`:
 
-This workflow engine provides:
-- Reliable coordination
-- Error recovery
-- Human oversight points
-- Debugging/tracing
+```json
+{
+  "projects": [
+    {
+      "name": "demo-project",
+      "path": "/abs/path/to/project",
+      "phases": {
+        "build": {
+          "every_minutes": 60,
+          "command": "pytest -q"
+        },
+        "maintain": {
+          "every_minutes": 30,
+          "command": "git status --short"
+        },
+        "scale": {
+          "every_minutes": 240,
+          "command": "python3 collector.py"
+        }
+      }
+    }
+  ]
+}
+```
+
+## CLI
+
+Run once:
+
+```bash
+python3 agent_workflow.py run-once --config meta.example.json --state data/meta_state.json
+```
+
+Run continuously:
+
+```bash
+python3 agent_workflow.py daemon --config meta.example.json --state data/meta_state.json --interval 300
+```
+
+Or after install:
+
+```bash
+pip install -e .
+agent-workflow run-once --config meta.example.json --state data/meta_state.json
+```
+
+## Why this matters
+
+Single repos are not the problem. Portfolio coordination is the problem.
+
+This harness is the thin control layer for:
+- build systems
+- maintenance loops
+- compounding project actions
+- future agent delegation and approval points
+- eventually, a real project empire OS
+
+## Current MVP limits
+
+- JSON config only
+- local shell command execution only
+- sequential execution
+- no human approval pauses yet
+- no distributed queue yet
+
+That is fine. MVP first. Control surface first. Reliability first.
+
+## Validation
+
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py' -v
+```
 
 ## License
 

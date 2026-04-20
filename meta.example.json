@@ -1,0 +1,46 @@
+{
+  "projects": [
+    {
+      "name": "polymarket-5min-bot",
+      "path": "/root/obsidian-hermes-vault/projects/polymarket-5min-bot",
+      "phases": {
+        "build": {
+          "every_minutes": 360,
+          "command": "python3 -m pytest tests/test_execution_signal_policy.py tests/test_risk_sizing_policy.py tests/test_runtime_entry_policy.py tests/test_strategy_bakeoff.py tests/test_restore_workflow.py tests/test_runtime_features.py -q"
+        },
+        "maintain": {
+          "every_minutes": 180,
+          "command": "git status --short"
+        }
+      }
+    },
+    {
+      "name": "XActions",
+      "path": "/root/projects/XActions",
+      "phases": {
+        "build": {
+          "every_minutes": 360,
+          "command": "npx vitest run tests/x402.test.js"
+        },
+        "maintain": {
+          "every_minutes": 180,
+          "command": "git status --short"
+        }
+      }
+    },
+    {
+      "name": "hermes-model",
+      "path": "/root/projects/hermes-model",
+      "phases": {
+        "maintain": {
+          "every_minutes": 240,
+          "command": "python3 -m unittest discover -s tests -p 'test_*.py' -v"
+        },
+        "scale": {
+          "every_minutes": 720,
+          "command": "python3 collector.py"
+        }
+      }
+    }
+  ]
+}
