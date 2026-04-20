@@ -5,11 +5,11 @@
       "path": "/root/obsidian-hermes-vault/projects/polymarket-5min-bot",
       "phases": {
         "build": {
-          "every_minutes": 360,
+          "every_minutes": 0,
           "command": "python3 -m pytest tests/test_execution_signal_policy.py tests/test_risk_sizing_policy.py tests/test_runtime_entry_policy.py tests/test_strategy_bakeoff.py tests/test_restore_workflow.py tests/test_runtime_features.py -q"
         },
         "maintain": {
-          "every_minutes": 180,
+          "every_minutes": 0,
           "command": "git status --short"
         }
       }
@@ -19,11 +19,11 @@
       "path": "/root/projects/XActions",
       "phases": {
         "build": {
-          "every_minutes": 360,
+          "every_minutes": 0,
           "command": "npx vitest run tests/x402.test.js"
         },
         "maintain": {
-          "every_minutes": 180,
+          "every_minutes": 0,
           "command": "git status --short"
         }
       }
@@ -33,12 +33,8 @@
       "path": "/root/projects/hermes-model",
       "phases": {
         "maintain": {
-          "every_minutes": 240,
+          "every_minutes": 0,
           "command": "python3 -m unittest discover -s tests -p 'test_*.py' -v"
-        },
-        "scale": {
-          "every_minutes": 720,
-          "command": "python3 collector.py"
         }
       }
     },
@@ -47,11 +43,11 @@
       "path": "/root/git-repos/agent-hub",
       "phases": {
         "build": {
-          "every_minutes": 360,
+          "every_minutes": 0,
           "command": "python3 -m unittest discover -s tests -p 'test_*.py' -v"
         },
         "maintain": {
-          "every_minutes": 180,
+          "every_minutes": 0,
           "command": "python3 agent_hub.py --registry registry.example.json search agent"
         }
       }
@@ -61,11 +57,11 @@
       "path": "/root/git-repos/agent-monitor",
       "phases": {
         "build": {
-          "every_minutes": 360,
+          "every_minutes": 0,
           "command": "python3 -m unittest discover -s tests -p 'test_*.py' -v"
         },
         "maintain": {
-          "every_minutes": 180,
+          "every_minutes": 0,
           "command": "python3 -c 'import json; from agent_monitor import Monitor; m=Monitor(\"meta\"); m.track_token_usage(1,0.01); m.track_latency(0.5); print(json.dumps(m.snapshot()))'"
         }
       }
